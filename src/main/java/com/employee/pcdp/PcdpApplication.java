@@ -9,6 +9,5 @@ public class PcdpApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PcdpApplication.class, args);
 		
-		System.out.println("Working");
 	}
 }

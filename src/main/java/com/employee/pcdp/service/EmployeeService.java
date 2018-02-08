@@ -2,6 +2,7 @@ package com.employee.pcdp.service;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ public class EmployeeService {
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	
+	private static final Logger LOGGER = Logger.getLogger(EmployeeService.class);
 	
 	public List<Employee> findByEmployeeId(long employeeId){
 		return employeeRepository.findByEmployeeId(employeeId);
@@ -27,6 +30,9 @@ public class EmployeeService {
 		Employee employee= employeeRepository.findOne(employeeId);
 		if(employee!=null){
 			employeeRepository.delete(employee);
+			LOGGER.debug("Employee with employeeId=>"+employeeId+" deleted successfully");
+		 }else{
+			 LOGGER.error("Employee with employeeId=>"+employeeId+" not available");
 		 }
 	} 
 }
